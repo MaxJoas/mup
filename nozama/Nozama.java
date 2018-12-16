@@ -19,25 +19,61 @@ public class Nozama {
 		this.artikel.add(a);
 	}
 
-	public String changeID() {
+	public void changeID() {
+
+		// looping through every article in de stream and assign new id
 		for( int i = 0; i < artikel.size(); i++ ){
 
-			Artikel currentArtikel = this.artikel.get(i);
-			String currentTitle = currentArtikel.getTitel();
+			// initialize Stringbuilder to add relevant substrings
+			StringBuilder newId = new StringBuilder();
 			
-			if( currentArtikel instanceof Film ) {
-				String first_letter = "F";
-				String second_part = currentArtikel.getRegie();
+			// check if article is film or album
+			if( this.artikel.get(i) instanceof Film ) {
+				Film currentArtikel = (Film) this.artikel.get(i);
+				String first_letter = "F-";
+				newId.append( first_letter );
+				String[] secondPart =  currentArtikel.getRegie().split( " " );
+
+				// loop through name of the director and add first letters to newID
+				for ( int j = 0; j < secondPart.length; j++ ) {
+
+					String currentWord = secondPart[j];
+					newId.append( currentWord.substring( 0 ) );
+				}
 			}
 
 			else {
-				String first_letter = "A";
-				String second_part = currentArtikel.getInterpret();
+				Album currentArtikel =  (Album) this.artikel.get(i);
+				String first_letter = "A-";
+				String[] secondPart = currentArtikel.getInterpret().split( " " );
+
+				// loop through name of the director and add first letters to newID
+				for ( int j = 0; j < secondPart.length; j++ ) {
+
+					String currentWord = secondPart[j];
+					newId.append( currentWord.substring( 0 ) );
+				}
 			}
 
-
+			String[] titel = this.artikel.get(i).getTitel().split( " " );
 			
+			
+				// looping titel and getting relevant substring
+				for ( int k = 0; k < titel.length; k++ ) {
+					String currentWord = titel[k];
+
+					// checking if word has at least 3 letters to avoid out of range bug
+					if ( currentWord.length() > 2 ) {
+					newId.append( currentWord.substring( 0 , 3 ) );
+					}
+					
+					else {
+						int length = currentWord.length();
+						newId.append( currentWord.substring( 0, length ) );
+					}
+
 		}
 	}
+}
 		
 }
