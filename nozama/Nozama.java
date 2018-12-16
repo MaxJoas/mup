@@ -38,20 +38,21 @@ public class Nozama {
 				for ( int j = 0; j < secondPart.length; j++ ) {
 
 					String currentWord = secondPart[j];
-					newId.append( currentWord.substring( 0 ) );
+					newId.append( currentWord.substring( 0, 1 ) );
 				}
 			}
 
 			else {
 				Album currentArtikel =  (Album) this.artikel.get(i);
 				String first_letter = "A-";
+				newId.append( first_letter );
 				String[] secondPart = currentArtikel.getInterpret().split( " " );
 
 				// loop through name of the director and add first letters to newID
 				for ( int j = 0; j < secondPart.length; j++ ) {
 
 					String currentWord = secondPart[j];
-					newId.append( currentWord.substring( 0 ) );
+					newId.append( currentWord.substring( 0, 1 ) );
 				}
 			}
 
@@ -73,6 +74,8 @@ public class Nozama {
 					}
 
 		}
+		this.artikel.get(i).setID(newId.toString());
+		System.out.println( this.artikel.get(i) );
 	}
 }
 		

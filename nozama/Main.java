@@ -17,10 +17,7 @@ public class Main {
 		}
 
 
-		for( int i = 0; i < sd.getArtikel.size(); i++ ){
-			Artikel currentArtikel = sd.getArtikel.get(i);
-			System.out.println(currentArtikel.getTitel());
-		}
+		sd.changeID();
 				
 	}
 
