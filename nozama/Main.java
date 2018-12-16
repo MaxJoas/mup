@@ -15,6 +15,12 @@ public class Main {
 				sd.addArtikel(new Film(m[1],m[2],Integer.parseInt(m[3]),Float.parseFloat(m[4]),Integer.parseInt(m[5]),m[6],m[7],m[8]));
 			}
 		}
+
+
+		for( int i = 0; i < sd.getArtikel.size(); i++ ){
+			Artikel currentArtikel = sd.getArtikel.get(i);
+			System.out.println(currentArtikel.getTitel());
+		}
 				
 	}
 
