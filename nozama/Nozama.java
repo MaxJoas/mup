@@ -40,6 +40,7 @@ public class Nozama {
 					String currentWord = secondPart[j];
 					newId.append( currentWord.substring( 0, 1 ) );
 				}
+				newId.append( "-" );
 			}
 
 			else {
@@ -52,8 +53,9 @@ public class Nozama {
 				for ( int j = 0; j < secondPart.length; j++ ) {
 
 					String currentWord = secondPart[j];
-					newId.append( currentWord.substring( 0, 1 ) );
+					newId.append( currentWord.substring( 0, 1 )  );
 				}
+				newId.append( "-" );
 			}
 
 			String[] titel = this.artikel.get(i).getTitel().split( " " );
@@ -74,9 +76,55 @@ public class Nozama {
 					}
 
 		}
+		// set new ID that we generated above
 		this.artikel.get(i).setID(newId.toString());
 		System.out.println( this.artikel.get(i) );
 	}
 }
+
+
+	public void sortArticle() {
 		
+		int n = this.artikel.size();
+		boolean swapped;
+
+		do {
+			swapped = false;
+			for ( int i = 0; i < n - 1 ; ++i ) {
+
+				// seting local variables 
+				Artikel currentArticle = this.artikel.get(i);
+				Artikel nextArticle = this.artikel.get( i + 1 );
+
+				// check first search criteria and apply bubblse sort for this criteria
+				if( currentArticle.getSortValue( currentArticle ) > nextArticle.getSortValue( nextArticle) ) {
+					this.artikel.set( i, nextArticle );
+					this.artikel.set( i + 1, currentArticle );
+					swapped = true;
+					}
+				
+				// in case first criteria is ambiguous, apply bubble sort for second criteria
+				else if( currentArticle.getSortValue( currentArticle ) == nextArticle.getSortValue( nextArticle) ) {
+					
+					if( currentArticle.getJahr() > nextArticle.getJahr() ) {
+						this.artikel.set( i, nextArticle );
+						this.artikel.set( i + 1, currentArticle );
+						swapped = true;
+						}
+
+						// in case second criteria is also ambiguos, apply bubble sort for third criteria
+						else if( currentArticle.getJahr() == nextArticle.getJahr() ) {
+
+							if ( currentArticle.getTitel().compareTo( nextArticle.getTitel() ) > 0 ) {
+								this.artikel.set( i, nextArticle );
+								this.artikel.set( i + 1, currentArticle );
+								swapped = true;
+							} 
+						}
+					}
+				}
+			 } while( swapped );
+		System.out.println(this.artikel);
+	
+	}
 }

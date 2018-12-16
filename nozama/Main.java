@@ -17,7 +17,8 @@ public class Main {
 		}
 
 
-		sd.changeID();
+		//sd.changeID();
+		sd.sortArticle();
 				
 	}
 

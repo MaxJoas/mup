@@ -48,4 +48,23 @@ public class Artikel {
 		return this.id+": "+this.titel+" ("+this.jahr+", Preis: "+this.preis+" Euro, Kaeufe: "+this.kaeufe+")";  
 	}
 	
+	public int getSortValue( Artikel artikel ) {
+		int value = 4;
+		if ( artikel instanceof Album){
+			value = 0;
+		}
+
+		else if ( artikel instanceof Film ) {
+			Film myFilm = (Film) artikel;
+			if ( myFilm.getFormat().equals( "HD" ) ){
+				value =  1;
+			}
+
+			else {
+				value = 2;
+			}
+		}
+		return value;
+	}
+	
 }

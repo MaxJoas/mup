@@ -29,4 +29,5 @@ public class Album extends Artikel {
 		return super.toString() + " (Album, Interpret: "+this.interpret+", "+this.numtitel+" Titel, Laufzeit: "+this.laufzeit+")";  
 	}
 
+
 }
