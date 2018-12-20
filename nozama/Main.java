@@ -1,11 +1,15 @@
 package nozama;
 
+import java.util.HashSet;
+
 public class Main {
 
 	public static void main(String[] args) {
 		
 		Nozama sd = new Nozama();
 		String[][] artikel = Data.getArtikel();
+		HashSet<String> tags = Data.getStoppworte();
+		System.out.println( tags );
 		for( int i=0; i<artikel.length; i++ ){
 			String[] m = artikel[i];
 			if( m[0].equals("Album") ){
@@ -18,7 +22,7 @@ public class Main {
 
 
 		//sd.changeID();
-		sd.sortArticle();
+		//sd.sortArticle();
 				
 	}
 

@@ -1,5 +1,8 @@
 package nozama;
 
+import java.util.HashSet;
+import java.util.List;
+
 public class Artikel {
 
 	private String id;
@@ -7,6 +10,7 @@ public class Artikel {
 	private int jahr;
 	private float preis;
 	private int kaeufe;
+	private HashSet<String> tags;
 	
 	public Artikel(String id, String titel, int jahr, float preis, int kaeufe){
 		this.id = id;
@@ -14,6 +18,7 @@ public class Artikel {
 		this.jahr = jahr;
 		this.preis = preis;
 		this.kaeufe = kaeufe;
+		this.tags = new HashSet<String>();
 	}
 	
 	public String getTitel(){
@@ -48,6 +53,8 @@ public class Artikel {
 		return this.id+": "+this.titel+" ("+this.jahr+", Preis: "+this.preis+" Euro, Kaeufe: "+this.kaeufe+")";  
 	}
 	
+	// implementing help funcion for bubblesort
+	
 	public int getSortValue( Artikel artikel ) {
 		int value = 4;
 		if ( artikel instanceof Album){
@@ -65,6 +72,25 @@ public class Artikel {
 			}
 		}
 		return value;
+	}
+
+	public HashSet getTags() {
+		return this.tags;
+	}
+
+	public void buildTags() {
+
+		String[] title = this.getTitel().split(" ");
+		for( int i = 0; i < title.length; ++i ) {
+			title[i] = title[i].toLowerCase();
+			title[i] = title[i].replaceAll( "[^a-zA-Z]+", "");
+			if ( Data.getStoppworte().contains(title[i] ) == false ) {
+				this.tags.add(title[i]);
+			}
+
+		}
+
+
 	}
 	
 }

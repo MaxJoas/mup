@@ -28,5 +28,23 @@ public class Film extends Artikel {
 	public String toString(){
 		return super.toString() + " (Film, "+this.format+", Regie: "+this.regie+", Genre: "+this.genre+")";  
 	}
+
+	@Override
+	public void buildTags() {
+
+		super.buildTags();
+		String[] genreRegie =  ( this.getGenre() + this.getRegie() ).split( " " );
+
+		for ( int i = 0; i < genreRegie.length; ++i ) {
+			genreRegie[i] = genreRegie[i].toLowerCase();
+			genreRegie[i] = genreRegie[i].replaceAll("[^a-zA-Z]+", "" );
+
+			if( super.getTags().contains( genreRegie[i] ) == false ) {
+				super.getTags().add( genreRegie[i] );
+			}
+		}
+
+
+	}
 	
 }
