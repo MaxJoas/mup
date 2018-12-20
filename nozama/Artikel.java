@@ -74,8 +74,12 @@ public class Artikel {
 		return value;
 	}
 
-	public HashSet getTags() {
-		return this.tags;
+	public HashSet<String> getTags() {
+		System.out.println(this.tags);
+		return tags;
+	}
+	public void addTags(String tag) {
+		this.tags.add( tag );
 	}
 
 	public void buildTags() {

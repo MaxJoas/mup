@@ -8,18 +8,24 @@ public class Main {
 		
 		Nozama sd = new Nozama();
 		String[][] artikel = Data.getArtikel();
-		HashSet<String> tags = Data.getStoppworte();
-		System.out.println( tags );
+
 		for( int i=0; i<artikel.length; i++ ){
 			String[] m = artikel[i];
 			if( m[0].equals("Album") ){
-				sd.addArtikel(new Album(m[1],m[2],Integer.parseInt(m[3]),Float.parseFloat(m[4]),Integer.parseInt(m[5]),m[6],Integer.parseInt(m[7]),Integer.parseInt(m[8])));
+				Album currentAlbum = new Album( m[1],m[2],Integer.parseInt(m[3]),Float.parseFloat(m[4]),Integer.parseInt(m[5]),m[6],Integer.parseInt(m[7]),Integer.parseInt(m[8]));
+				currentAlbum.buildTags();
+				currentAlbum.getTags();
+				sd.addArtikel(currentAlbum);
 			}
 			else if( m[0].equals("Film") ){
-				sd.addArtikel(new Film(m[1],m[2],Integer.parseInt(m[3]),Float.parseFloat(m[4]),Integer.parseInt(m[5]),m[6],m[7],m[8]));
+				Film currentFilm = new Film( m[1],m[2],Integer.parseInt(m[3]),Float.parseFloat(m[4]),Integer.parseInt(m[5]),m[6],m[7],m[8] );
+				currentFilm.buildTags();
+				currentFilm.getTags();
+				sd.addArtikel( currentFilm );
 			}
 		}
 
+		
 
 		//sd.changeID();
 		//sd.sortArticle();

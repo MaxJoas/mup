@@ -12,6 +12,7 @@ public class Nozama {
 	}
 	
 	public List<Artikel> getArtikel(){
+		System.out.println(this.artikel);
 		return this.artikel;
 	}
 	
@@ -21,7 +22,7 @@ public class Nozama {
 
 	public void changeID() {
 
-		// looping through every article in de stream and assign new id
+		// looping through every article in the stream and assign new id
 		for( int i = 0; i < artikel.size(); i++ ){
 
 			// initialize Stringbuilder to add relevant substrings
@@ -124,7 +125,7 @@ public class Nozama {
 					}
 				}
 			 } while( swapped );
-		System.out.println(this.artikel);
+		System.out.println( this.artikel );
 	
 	}
 }

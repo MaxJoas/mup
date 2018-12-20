@@ -1,4 +1,5 @@
 package nozama;
+import java.util.HashSet;
 
 public class Film extends Artikel {
 
@@ -33,18 +34,18 @@ public class Film extends Artikel {
 	public void buildTags() {
 
 		super.buildTags();
-		String[] genreRegie =  ( this.getGenre() + this.getRegie() ).split( " " );
+		String[] genreRegie =  ( this.getGenre() +" " + this.getRegie() ).split( " " );
 
 		for ( int i = 0; i < genreRegie.length; ++i ) {
 			genreRegie[i] = genreRegie[i].toLowerCase();
 			genreRegie[i] = genreRegie[i].replaceAll("[^a-zA-Z]+", "" );
 
-			if( super.getTags().contains( genreRegie[i] ) == false ) {
-				super.getTags().add( genreRegie[i] );
+			if( Data.getStoppworte().contains( genreRegie[i] ) == false ) {
+				super.addTags( genreRegie[i] );
 			}
 		}
-
-
 	}
+	
+	
 	
 }

@@ -1,4 +1,5 @@
 package nozama;
+import java.util.HashSet;
 
 public class Album extends Artikel {
 
@@ -29,5 +30,24 @@ public class Album extends Artikel {
 		return super.toString() + " (Album, Interpret: "+this.interpret+", "+this.numtitel+" Titel, Laufzeit: "+this.laufzeit+")";  
 	}
 
+	@Override
+	public void buildTags() {
 
+		super.buildTags();
+
+		String[] tagInterpret = this.getInterpret().split( " " );
+
+		for( int i = 0; i < tagInterpret.length; ++i ) {
+			tagInterpret[i] = tagInterpret[i].toLowerCase();
+			tagInterpret[i] = tagInterpret[i].replaceAll( "[^a-zA-Z]+", "" );
+
+			if ( Data.getStoppworte().contains(tagInterpret[i]) == false ) {
+				super.addTags( tagInterpret[i] );
+			}
+		}
+
+
+	}
+
+	
 }
