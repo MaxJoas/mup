@@ -37,15 +37,14 @@ public class Film extends Artikel {
 		String[] genreRegie =  ( this.getGenre() +" " + this.getRegie() ).split( " " );
 
 		for ( int i = 0; i < genreRegie.length; ++i ) {
+
+			// replace numbers special characters and make all letters lowercase
 			genreRegie[i] = genreRegie[i].toLowerCase();
 			genreRegie[i] = genreRegie[i].replaceAll("[^a-zA-Z]+", "" );
 
-			if( Data.getStoppworte().contains( genreRegie[i] ) == false ) {
+			if( ( Data.getStoppworte().contains( genreRegie[i] ) == false ) && ( super.getTags().contains( genreRegie[i] ) == false ) ) {
 				super.addTags( genreRegie[i] );
 			}
 		}
 	}
-	
-	
-	
 }

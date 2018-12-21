@@ -41,13 +41,11 @@ public class Album extends Artikel {
 			tagInterpret[i] = tagInterpret[i].toLowerCase();
 			tagInterpret[i] = tagInterpret[i].replaceAll( "[^a-zA-Z]+", "" );
 
-			if ( Data.getStoppworte().contains(tagInterpret[i]) == false ) {
+			if ( ( Data.getStoppworte().contains(tagInterpret[i]) == false ) &&  ( super.getTags().contains( tagInterpret[i] ) == false ) ) {
 				super.addTags( tagInterpret[i] );
 			}
 		}
 
 
 	}
-
-	
 }
