@@ -1,7 +1,8 @@
 package nozama;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class Artikel {
 
@@ -10,7 +11,7 @@ public class Artikel {
 	private int jahr;
 	private float preis;
 	private int kaeufe;
-	private HashSet<String> tags;
+	private List<String> tags;
 	
 	public Artikel(String id, String titel, int jahr, float preis, int kaeufe){
 		this.id = id;
@@ -18,7 +19,7 @@ public class Artikel {
 		this.jahr = jahr;
 		this.preis = preis;
 		this.kaeufe = kaeufe;
-		this.tags = new HashSet<String>();
+		this.tags = new ArrayList<String>();
 	}
 	
 	public String getTitel(){
@@ -74,9 +75,11 @@ public class Artikel {
 		return value;
 	}
 
-	public HashSet<String> getTags() {
-		System.out.println(this.tags);
-		return tags;
+	public List<String> getTags() {
+
+		//printed tags for testing
+		//System.out.println(this.tags);
+		return this.tags;
 	}
 	public void addTags(String tag) {
 		this.tags.add( tag );
@@ -88,13 +91,9 @@ public class Artikel {
 		for( int i = 0; i < title.length; ++i ) {
 			title[i] = title[i].toLowerCase();
 			title[i] = title[i].replaceAll( "[^a-zA-Z]+", "");
-			if ( Data.getStoppworte().contains(title[i] ) == false ) {
+			if ( ( Data.getStoppworte().contains(title[i] ) == false )  && ( this.tags.contains( title[i] ) == false ) )  {
 				this.tags.add(title[i]);
 			}
-
 		}
-
-
 	}
-	
 }

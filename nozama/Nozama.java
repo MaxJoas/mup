@@ -2,13 +2,17 @@ package nozama;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
+import java.util.HashSet;
 
 public class Nozama {
 
 	private List<Artikel> artikel;
+	private TreeMap<String, Integer> tagcount;
 	
 	public Nozama(){
 		this.artikel = new ArrayList<Artikel>();
+		this.tagcount = new TreeMap<String, Integer>();
 	}
 	
 	public List<Artikel> getArtikel(){
@@ -127,5 +131,29 @@ public class Nozama {
 			 } while( swapped );
 		System.out.println( this.artikel );
 	
+	}
+
+	public void countTags() {
+		for( int i = 0;i <  this.artikel.size(); i++ ) {
+
+			// Setting local variables to increase readability fo code
+			Artikel currentArtikel = this.artikel.get(i);
+			List<String> currentTags = currentArtikel.getTags();
+
+			// checking for every tag ig it is allready in tagcount
+			for(int j = 0; j < currentTags.size(); j++) {
+				if( this.tagcount.containsKey( currentTags.get(j) ) ) {
+					//increasing old count by one and set it as new count
+					Integer newValue = this.tagcount.get( currentTags.get(j) ) + 1;
+					this.tagcount.put( currentTags.get(j), newValue );
+				}
+
+				// in case the tag is not in the treemap, we add the tag s key and begin to count
+				else {
+					this.tagcount.put( currentTags.get(j), 1 );
+				}
+			}
+		}
+		System.out.println( this.tagcount );
 	}
 }
