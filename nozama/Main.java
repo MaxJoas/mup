@@ -33,12 +33,22 @@ public class Main {
 
 		
 
-		//sd.changeID();
+		sd.changeID();
 		//sd.sortArticle();
-		//sd.countTags();
-		List<Artikel> filtered = sd.filter( myarticles,"SD"  );
-		sd.filter(filtered, 5.00, 6.00);
+		sd.countTags();
+		
 
+		// filter all articles that have been buyed more than 700 times
+		List<Artikel> sevenhundred = sd.filter( myarticles, 700 );
+		// filter the filterd List by pricerange
+		List <Artikel> finalFilterd = sd.filter( sevenhundred, 5.50, 7.50 );
+		System.out.println( finalFilterd );
+
+		// second filer task HD nd tags horror and blood)
+		List <Artikel> hd = sd.filter( myarticles, "HD" );
+		String[] tagList = {"horror", "blood"};
+		List<Artikel> filtered2 = sd.filter( hd, tagList );
+		System.out.println( filtered2 );
 				
 	}
 

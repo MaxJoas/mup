@@ -181,7 +181,7 @@ public class Nozama {
 			}
 			
 		}
-		System.out.println( returnList );
+		//System.out.println( returnList );
 			return returnList;
 	}
 
@@ -193,7 +193,35 @@ public class Nozama {
 				returnList.add( currentArticle );
 			}
 		}
-		System.out.println(returnList);
+		//System.out.println(returnList);
+		return returnList;
+	}
+
+	public List<Artikel> filter( List <Artikel> articles, int criteria ) {
+		List <Artikel>returnList = new ArrayList<Artikel>();
+		for(int i = 0; i < articles.size(); i++ ) {
+			Artikel currentArtikel = articles.get(i);
+			if( currentArtikel.getKaeufe() >= criteria ) {
+				returnList.add( currentArtikel );
+			}
+		}
+		//System.out.println( returnList );
+		return returnList;
+	}
+
+	public List<Artikel> filter( List<Artikel> articles, String[] tags ) {
+		List<Artikel> returnList = new ArrayList<Artikel>();
+		for( int i = 0; i < articles.size(); i++ ) {
+			Artikel currentArtikel = articles.get(i);
+			// lopping trhough given tags
+			for( int j = 0; j < tags.length; j++ ) {
+				String currentTag = tags[j];
+				if( currentArtikel.getTags().contains( currentTag ) ) {
+					returnList.add( currentArtikel );
+				}
+			}
+		}
+		//System.out.println(returnList);
 		return returnList;
 	}
 }
