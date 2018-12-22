@@ -1,5 +1,7 @@
 package nozama;
-import java.util.HashSet;
+
+import java.util.List;
+import java.util.ArrayList;
 
 public class Album extends Artikel {
 
@@ -21,6 +23,11 @@ public class Album extends Artikel {
 	public int getLaufzeit(){
 		return this.laufzeit;
 	}
+
+	public List<String> getTags() {
+		//System.out.println(super.getTags());
+		return super.getTags();
+	}
 	
 	public String getInterpret(){
 		return this.interpret;
@@ -33,19 +40,20 @@ public class Album extends Artikel {
 	@Override
 	public void buildTags() {
 
+		// build tags for title
 		super.buildTags();
-
+		// getting array of words for tag building
 		String[] tagInterpret = this.getInterpret().split( " " );
 
 		for( int i = 0; i < tagInterpret.length; ++i ) {
+			// replace numbers special characters and make all letters lowercase
 			tagInterpret[i] = tagInterpret[i].toLowerCase();
 			tagInterpret[i] = tagInterpret[i].replaceAll( "[^a-zA-Z]+", "" );
 
+			// add tags, if it is not a stopword and not already in the taglist
 			if ( ( Data.getStoppworte().contains(tagInterpret[i]) == false ) &&  ( super.getTags().contains( tagInterpret[i] ) == false ) ) {
 				super.addTags( tagInterpret[i] );
 			}
 		}
-
-
 	}
 }

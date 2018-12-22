@@ -1,5 +1,7 @@
 package nozama;
-import java.util.HashSet;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Film extends Artikel {
 
@@ -25,6 +27,11 @@ public class Film extends Artikel {
 	public String getGenre(){
 		return this.genre;
 	}
+
+	public List<String> getTags() {
+		//System.out.println(super.getTags());
+		return super.getTags();
+	}
 	
 	public String toString(){
 		return super.toString() + " (Film, "+this.format+", Regie: "+this.regie+", Genre: "+this.genre+")";  
@@ -42,6 +49,7 @@ public class Film extends Artikel {
 			genreRegie[i] = genreRegie[i].toLowerCase();
 			genreRegie[i] = genreRegie[i].replaceAll("[^a-zA-Z]+", "" );
 
+			// add tags, if it is not a stopword and not already in the taglist
 			if( ( Data.getStoppworte().contains( genreRegie[i] ) == false ) && ( super.getTags().contains( genreRegie[i] ) == false ) ) {
 				super.addTags( genreRegie[i] );
 			}

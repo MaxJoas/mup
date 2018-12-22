@@ -184,4 +184,16 @@ public class Nozama {
 		System.out.println( returnList );
 			return returnList;
 	}
+
+	public List<Artikel> filter( List<Artikel> articles, double lowPrice, double highPrice ) {
+		List<Artikel> returnList = new ArrayList<Artikel>();
+		for( int i = 0; i < articles.size(); i++ ) {
+			Artikel currentArticle = articles.get(i);
+			if( ( currentArticle.getPreis() <= highPrice ) && ( currentArticle.getPreis() >= lowPrice ) ) {
+				returnList.add( currentArticle );
+			}
+		}
+		System.out.println(returnList);
+		return returnList;
+	}
 }
