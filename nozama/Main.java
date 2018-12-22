@@ -36,7 +36,7 @@ public class Main {
 		//sd.changeID();
 		//sd.sortArticle();
 		//sd.countTags();
-		sd.filter( myarticles,"Album"  );
+		sd.filter( myarticles,"SD"  );
 
 				
 	}

@@ -176,11 +176,8 @@ public class Nozama {
 				}
 				if( currentFilm.getFormat().equals( "HD" ) && criteria.equals("HD") ){
 					returnList.add(currentArtikel);
-
-				
+		
 			}
-			
-
 			}
 			
 		}
