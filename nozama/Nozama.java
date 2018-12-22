@@ -3,7 +3,6 @@ package nozama;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
-import java.util.HashSet;
 
 public class Nozama {
 
@@ -155,5 +154,37 @@ public class Nozama {
 			}
 		}
 		System.out.println( this.tagcount );
+	}
+
+	public List<Artikel> filter( List<Artikel> articlelist, String criteria ){
+		List<Artikel> returnList = new ArrayList<Artikel>();
+		if ( ! criteria.equals( "Album" ) && ! criteria.equals( "SD" ) && ! criteria.equals( "HD" ) ) {
+			System.out.println( "Please provide a valid criteria: Album, SD, or HD" );
+		}
+		
+		for( int i = 0; i < articlelist.size(); i++ ) {
+			Artikel currentArtikel = articlelist.get(i);
+
+			if ( ( criteria.equals("Album") ) && ( currentArtikel instanceof Album ) ) {
+					returnList.add( currentArtikel );
+			}
+
+			else if ( currentArtikel instanceof Film ) {
+				Film currentFilm = (Film) currentArtikel;
+				if( currentFilm.getFormat().equals( "SD" ) && criteria.equals("SD") ){
+					returnList.add(currentArtikel);
+				}
+				if( currentFilm.getFormat().equals( "HD" ) && criteria.equals("HD") ){
+					returnList.add(currentArtikel);
+
+				
+			}
+			
+
+			}
+			
+		}
+		System.out.println( returnList );
+			return returnList;
 	}
 }
