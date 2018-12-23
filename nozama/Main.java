@@ -17,27 +17,22 @@ public class Main {
 				Album currentAlbum = new Album( m[1],m[2],Integer.parseInt(m[3]),Float.parseFloat(m[4]),Integer.parseInt(m[5]),m[6],Integer.parseInt(m[7]),Integer.parseInt(m[8]));
 				currentAlbum.buildTags();
 				myarticles.add( currentAlbum );
-				// I prited the tags for testing
-				currentAlbum.getTags();
 				sd.addArtikel(currentAlbum);
 			}
 			else if( m[0].equals("Film") ){
 				Film currentFilm = new Film( m[1],m[2],Integer.parseInt(m[3]),Float.parseFloat(m[4]),Integer.parseInt(m[5]),m[6],m[7],m[8] );
 				currentFilm.buildTags();
-				// I prited the tags for testing
-				currentFilm.getTags();
 				myarticles.add( currentFilm );
 				sd.addArtikel( currentFilm );
 			}
 		}
 
-		
+// TESTING MEHTODS ------------------------------------------------------------------------------------------------------------------------------------------------7
 
 		sd.changeID();
-		//sd.sortArticle();
+		
 		sd.countTags();
 		
-
 		// filter all articles that have been buyed more than 700 times
 		List<Artikel> sevenhundred = sd.filter( myarticles, 700 );
 		// filter the filterd List by pricerange
@@ -49,6 +44,8 @@ public class Main {
 		String[] tagList = {"horror", "blood"};
 		List<Artikel> filtered2 = sd.filter( hd, tagList );
 		System.out.println( filtered2 );
+
+		sd.sortArticle();
 				
 	}
 

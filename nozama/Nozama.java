@@ -11,7 +11,6 @@ public class Nozama {
 	
 	public Nozama(){
 		this.artikel = new ArrayList<Artikel>();
-		// use empty treemap for the tag count anf fill the Treemap in the main function with buildTag method
 		this.tagcount = new TreeMap<String, Integer>();
 	}
 	
@@ -114,7 +113,7 @@ public class Nozama {
 				
 				// in case first criteria is ambiguous, apply bubble sort for second criteria
 				else if( currentArticle.getSortValue( currentArticle ) == nextArticle.getSortValue( nextArticle) ) {
-					
+					// I did understadn "aufsteigend" so that the smaller year comes first
 					if( currentArticle.getJahr() > nextArticle.getJahr() ) {
 						this.artikel.set( i, nextArticle );
 						this.artikel.set( i + 1, currentArticle );
