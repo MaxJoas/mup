@@ -28,6 +28,7 @@ public class Film extends Artikel {
 		return this.genre;
 	}
 
+	// getter for tags
 	public List<String> getTags() {
 		//System.out.println(super.getTags());
 		return super.getTags();
@@ -37,10 +38,13 @@ public class Film extends Artikel {
 		return super.toString() + " (Film, "+this.format+", Regie: "+this.regie+", Genre: "+this.genre+")";  
 	}
 
+	// overriding buildtags from parent class to get tags from genre and dircetor
 	@Override
 	public void buildTags() {
-
+		// building tags for title 
 		super.buildTags();
+		// concatenating Genre and Regie so we hav less work to do
+		// Note. in case if a Stop word in regie we gett empty tags (five), but that should not be a problem
 		String[] genreRegie =  ( this.getGenre() +" " + this.getRegie() ).split( " " );
 
 		for ( int i = 0; i < genreRegie.length; ++i ) {
